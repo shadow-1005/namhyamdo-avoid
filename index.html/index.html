@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>남혐도 피하기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 로비 화면 -->
+  <div id="lobby">
+    <h1 id="gameTitle">남혐도 피하기</h1>
+    <button id="startBtn">게임 시작</button>
+    <button id="creditsBtn">제작자</button>
+  </div>
+
+  <!-- 제작자 소개 화면 -->
+  <div id="credits" style="display:none;">
+    <h2>언페</h2>
+    <button id="backToLobby">나가기</button>
+  </div>
+
+  <!-- 게임 화면 -->
+  <div id="game" style="display:none;">
+    <div id="uiBar">
+      <div id="scoreUI">점수: 0</div>
+      <div id="lifeUI"></div>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+  </div>
+
+  <script src="gameModule.js"></script>
+  <script>
+    // 화면 전환 로직
+    document.getElementById("startBtn").addEventListener("click", () => {
+      document.getElementById("lobby").style.display = "none";
+      document.getElementById("game").style.display = "block";
+      GameModule.init("gameCanvas", "scoreUI", "lifeUI");
+    });
+
+    document.getElementById("creditsBtn").addEventListener("click", () => {
+      document.getElementById("lobby").style.display = "none";
+      document.getElementById("credits").style.display = "block";
+    });
+
+    document.getElementById("backToLobby").addEventListener("click", () => {
+      document.getElementById("credits").style.display = "none";
+      document.getElementById("lobby").style.display = "block";
+    });
+  </script>
+</body>
+</html>
